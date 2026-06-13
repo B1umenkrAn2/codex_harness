@@ -2,23 +2,44 @@
 
 This is a trimmed repo-bound Codex harness.
 
+It is designed to coexist with `obra/superpowers` without duplicating Superpowers' general development methodology.
+
 ## How Codex Loads It
 
-Codex discovers the root `AGENTS.md` file. That root file instructs Codex to read this harness directory.
+Codex discovers the root `AGENTS.md` file. That file points to the harness controller at:
 
-## Core Workflow
+`.github/harness_coding_instructions/AGENTS.md`
 
-1. Plan
-2. Correctness Check
-3. Code Implementation
-4. Documentation
+The controller then explains which additional files should be read conditionally.
+
+## Role
+
+This harness provides:
+
+- repo-specific safety constraints
+- durable project context
+- known issue memory
+- lightweight fallback rules when no richer workflow is active
+
+It does **not** provide a second mandatory Plan / Correctness Check / Implementation / Documentation workflow.
 
 ## Directory Roles
 
-- `AGENTS.md`: harness-level controller
-- `_lib/`: shared safety and workflow contracts
-- `philosophy/`: engineering behavior principles
-- `workflow/codex_workflow/`: Codex-specific workflow instructions
-- `modules/`: optional control modules such as Devils Advocate and Online Researcher
-- `request_template/`: optional human/Hermes task input templates
-- `repo_info/`: project-specific memory files
+- `AGENTS.md`: root entry point
+- `.github/harness_coding_instructions/AGENTS.md`: thin harness controller
+- `.github/harness_coding_instructions/_lib/`: safety, approval, and fallback workflow constraints
+- `.github/harness_coding_instructions/philosophy/`: local engineering preferences
+- `.github/harness_coding_instructions/repo_info/`: durable project memory
+
+## Superpowers Compatibility
+
+When Superpowers is installed or active, let it own:
+
+- brainstorming and design
+- implementation planning
+- TDD
+- subagent or inline execution
+- review workflows
+- branch finishing
+
+Use this harness only to add local repo constraints and context.
