@@ -1,50 +1,29 @@
-# Workflow Contract
+# Lightweight Workflow Contract
 
-## Execution Contract
+Use this contract only as a fallback when no richer workflow is active.
 
-For every coding task, Codex must follow:
+If Superpowers is active, do not run a second harness workflow. Let Superpowers own planning, TDD, execution, review, and branch finishing. This file only adds local constraints.
 
-1. Plan
-2. Correctness Check
-3. Code Implementation
-4. Documentation
+## Local Constraints
 
-Do not jump directly into implementation unless the user explicitly requests a trivial change and the change is low risk.
+- Prefer the smallest correct change.
+- Do not modify unrelated files.
+- Preserve existing architecture unless the task requires changing it.
+- Do not introduce new dependencies unless explicitly justified.
+- Do not claim correctness without evidence from repository files, command output, tests, user-provided documentation, or external research when needed.
+- If uncertain, say what evidence is missing.
 
-## Evidence Rule
+## Fallback Flow
 
-Do not claim something is true unless it is supported by one of:
+For small coding tasks when no outer workflow is active:
 
-- repository files
-- command output
-- test output
-- documentation explicitly provided by the user
-- external research when needed
+1. Understand the requested scope.
+2. Inspect only relevant files.
+3. Make the minimal safe change.
+4. Run the narrowest relevant validation available.
+5. Report what changed, what was checked, and any remaining risk.
 
-If uncertain, say so and identify the missing evidence.
-
-## Minimal Diff Rule
-
-Prefer the smallest correct change.
-
-Do not:
-
-- rewrite unrelated files
-- refactor unrelated code
-- rename public APIs unless required
-- change formatting across untouched files
-- introduce new dependencies unless explicitly justified
-
-## Validation Rule
-
-Before declaring the task complete:
-
-- identify the relevant checks
-- run them when possible
-- report exact commands and outcomes
-- if checks cannot be run, explain why
-
-## Failure Rule
+## Failure Handling
 
 If validation fails:
 
