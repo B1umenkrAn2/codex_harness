@@ -1,67 +1,59 @@
 # Codex Harness Instructions
 
-You are operating inside a Codex Harness.
+This harness is a **repo-specific thin layer**.
 
-Your job is to act as a careful software engineering agent, not as a conversational assistant.
+It should provide only durable project context, safety constraints, and a few local preferences. It should not duplicate a full coding-agent workflow such as Superpowers.
 
-## Mandatory Files
+## Default Behavior
 
-Before starting a task, read:
+Use the active outer workflow. If `obra/superpowers` is active, follow Superpowers for general process:
 
-1. `_lib/workflow_contract.md`
-2. `_lib/safety_rules.md`
-3. `_lib/approval_gate.md`
-4. `philosophy/philosophy.instructions.md`
-5. `repo_info/STATE.md`
-6. `repo_info/KNOWN_ISSUES.md`
+- brainstorming and design approval
+- implementation plans
+- TDD
+- subagent or inline execution
+- review loops
+- branch finishing
 
-Paths are relative to `.github/harness_coding_instructions/`.
+Do not also run a separate harness-level Plan / Correctness Check / Implementation / Documentation workflow.
 
-## Core Workflow
+## Conditional Files
 
-For coding tasks, follow exactly this sequence:
+Read these only when relevant:
 
-1. Plan
-2. Correctness Check
-3. Code Implementation
-4. Documentation
+- `_lib/safety_rules.md` — before file modifications, destructive commands, dependency changes, git operations, or secret-sensitive work.
+- `_lib/approval_gate.md` — when it is unclear whether the user wants file changes or only analysis.
+- `repo_info/STATE.md` — when durable project context is needed.
+- `repo_info/KNOWN_ISSUES.md` — before non-trivial implementation, debugging, or validation work.
+- `philosophy/philosophy.instructions.md` — only when local engineering preferences are ambiguous.
 
-Use these files:
+Do not read all of them by default.
 
-- Plan: `workflow/codex_workflow/plan.instructions.md`
-- Correctness Check: `workflow/codex_workflow/correctness_check.instructions.md`
-- Code Implementation: `workflow/codex_workflow/code_implementation.instructions.md`
-- Documentation: `workflow/codex_workflow/documentation.instructions.md`
+## Coding Requests
 
-## Optional Control Modules
+When changing files:
 
-Use Devils Advocate behavior during:
+1. Stay within the user's requested scope.
+2. Apply the repo safety rules.
+3. Prefer the smallest correct diff.
+4. Validate with the narrowest relevant checks available.
+5. Report exact validation commands and outcomes.
 
-- Plan review
-- Correctness review
-- high-risk changes
-- failed validation retries
-
-Use Online Research behavior only when:
-
-- external APIs, frameworks, CLIs, dependency behavior, cloud behavior, or security-sensitive facts are uncertain
-- the local repository does not contain enough information
-- current behavior may differ from model memory
-
-## Memory Rules
-
-After meaningful changes, update:
-
-- `repo_info/STATE.md`
-- `repo_info/CHANGELOG.md`
-- `repo_info/KNOWN_ISSUES.md` if a new issue, workaround, or unresolved risk is discovered
-
-Do not store project-specific memory outside `repo_info/`.
+If Superpowers is active, these rules constrain the work; they do not replace Superpowers' workflow.
 
 ## Non-Coding Requests
 
-If the user asks for explanation, architecture analysis, or Q&A only:
+For explanation, architecture analysis, review-only, or Q&A:
 
 - do not modify files
 - answer directly
-- optionally read `repo_info/STATE.md` if project context is needed
+- read repo context only if needed
+
+## Memory Rules
+
+Update durable repo memory only when it will help future sessions:
+
+- `repo_info/STATE.md` for stable architecture facts, commands, conventions, or integration points.
+- `repo_info/KNOWN_ISSUES.md` for real unresolved risks, flaky checks, or workarounds.
+
+Do not duplicate Superpowers specs, plans, implementation reports, or task logs into repo memory.
