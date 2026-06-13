@@ -1,5 +1,7 @@
 # Safety Rules
 
+These are repo-specific safety constraints. They apply even when Superpowers or another workflow is active.
+
 ## Forbidden Actions
 
 Do not:
@@ -17,7 +19,7 @@ Do not:
 
 Only modify files required by the task.
 
-If additional files appear necessary, explain why before modifying them.
+If additional files appear necessary, explain why before modifying them unless the user already authorized broad cleanup.
 
 ## Secret Handling
 
