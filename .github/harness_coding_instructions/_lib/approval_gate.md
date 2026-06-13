@@ -1,8 +1,10 @@
 # Approval Gate
 
+Use this file only when the user's request is ambiguous about whether files should be changed.
+
 ## Planning-Only Mode
 
-If the user asks for:
+If the user asks for any of the following, do not modify files:
 
 - analysis only
 - plan only
@@ -10,18 +12,12 @@ If the user asks for:
 - explanation only
 - no code changes
 
-then do not modify files.
+Answer directly and read repo context only if needed.
 
 ## Implementation Mode
 
-Proceed to implementation only when:
+Proceed to file changes when the user requests a code change, fix, feature, refactor, migration, documentation update, or other repository edit.
 
-- the user requested a code change, fix, feature, refactor, migration, or documentation update
-- the plan and correctness criteria are clear enough
-- the required file scope is reasonably bounded
+For low-risk ambiguity, make a reasonable assumption and state it.
 
-## Ambiguity
-
-If the task is ambiguous but low-risk, make a reasonable assumption and state it.
-
-If the ambiguity may affect architecture, data loss, public APIs, security, or deployment behavior, stop and ask for clarification.
+Stop and ask for clarification only when the ambiguity may affect architecture, data loss, public APIs, security, deployment behavior, or irreversible work.
