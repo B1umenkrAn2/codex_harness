@@ -1,23 +1,34 @@
 # AGENTS.md
 
-This repository uses the Codex Harness located at:
+This repository contains a **thin Codex harness**.
 
-`.github/harness_coding_instructions/`
+The harness is a repo-specific compatibility layer, not a second full software-development methodology.
 
-Before doing any work, read:
+## Entry Point
+
+Before doing repo work, read:
 
 1. `.github/harness_coding_instructions/AGENTS.md`
-2. `.github/harness_coding_instructions/_lib/workflow_contract.md`
-3. `.github/harness_coding_instructions/_lib/safety_rules.md`
-4. `.github/harness_coding_instructions/philosophy/philosophy.instructions.md`
-5. `.github/harness_coding_instructions/repo_info/STATE.md`
-6. `.github/harness_coding_instructions/repo_info/KNOWN_ISSUES.md`
 
-Use the harness workflow for every coding task:
+That file explains when to read any additional harness files.
 
-1. Plan
-2. Correctness Check
-3. Code Implementation
-4. Documentation
+## Superpowers Compatibility
 
-Do not bypass the harness workflow unless the user explicitly asks for a quick answer or asks not to modify files.
+If `obra/superpowers` is installed or otherwise active, let Superpowers own the general workflow:
+
+- brainstorming / design
+- implementation planning
+- TDD
+- subagent execution
+- code review
+- branch finishing
+
+Do **not** duplicate those workflows from this harness.
+
+## Fast Path
+
+For explanation-only, analysis-only, or no-code-change requests:
+
+- answer directly
+- do not modify files
+- do not create specs, plans, changelogs, or repo memory unless explicitly useful
